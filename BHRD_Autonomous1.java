@@ -12,7 +12,6 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
-import org.firstinspires.ftc.robotcore.external.navigation.RelicRecoveryVuMark;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefaultListener;
@@ -223,20 +222,44 @@ public class BHRD_Autonomous1 extends LinearOpMode {
     public void Jewel(double servoPosition) {
 
         JewelArm.setPosition(servoPosition);
+        telemetry.addData("Status", "JewelArm has moved");
+        telemetry.update();
 
+        Color.red();
+        Color.blue();
+        Color.green();
+        Color.alpha();
+        Color.argb();
+
+        telemetry.addData("Status", "Color sensor has determined the color");
+        telemetry.addData("Path1", "Running at %7d :%7d",Color.red(),Color.blue(),Color.green(),Color.alpha(),
+        Color.argb()); telemetry.update();
         if (Color.red() > 200) {
             DriveForward(6);
             //int x = 6;
+
+            telemetry.addData("Status", "Color is red");
+            telemetry.update();
+
         } else if (Color.blue() > 200) {
             DriveBackward(6);
             //int y = 6;
+
+            telemetry.addData("Status", "Color is blue");
+            telemetry.update();
+
         } else {
             RightFront.setPower(0);
             RightBack.setPower(0);
             LeftFront.setPower(0);
             LeftBack.setPower(0);
+            telemetry.addData("Status", "Color sensor was not able to read a color");
+            telemetry.update();
         }
         JewelArm.setPosition(0.0);
+
+        telemetry.addData("Status", "Class Jewel is complete");
+        telemetry.update();
     }
 
     public void RightTurn(double degrees) {
